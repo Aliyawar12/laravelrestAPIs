@@ -53,13 +53,7 @@ class PermissionController extends Controller
                 $response = [
                     'id' => $permission->id,
                     'attributes' => [
-                        // 'component' => [
-                        //     'id' => $component->id,
-                        //     'attributes' => [
-                        //         'name' => $component->name,
-                        //         'created_at' => $component->created_at,
-                        //         'updated_at' => $component->updated_at,
-                        //     ],
+                        // 'component' => [],
                         ],
                         'is_created' => $permission->is_created,
                         'is_updated' => $permission->is_updated,

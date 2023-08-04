@@ -7,6 +7,8 @@ use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PermissionController;
 use App\Models\Component;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SubdepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,12 @@ Route::middleware('api')->get('/permission/{id}', [PermissionController::class, 
 //Role Route
 Route::middleware('api')->get('/role', [RolesController::class, 'index']);
 Route::middleware('api')->get('/role/{id}', [RolesController::class, 'specific']);
+
+//Departments Routes
+Route::middleware('api')->get('/department', [DepartmentController::class, 'index']);
+Route::middleware('api')->get('/department/{id}', [DepartmentController::class, 'specific']);
+
+
+//Subdepartments Route
+Route::middleware('api')->get('/Subdepartment', [SubdepartmentController::class, 'index']);
+Route::middleware('api')->get('/Subdepartment/{id}', [SubdepartmentController::class, 'specific']);

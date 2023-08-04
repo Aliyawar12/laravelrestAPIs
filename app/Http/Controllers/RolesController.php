@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Permission;
 use App\Models\Role;
 
+
 class RolesController extends Controller
 {
     public function index(Request $request)
