@@ -16,7 +16,7 @@ class PermissionController extends Controller
           // Verify the token
     if (Auth::guard('api')->check()) {
             $permissions = Permission::all();
-            $component = Component::all();
+
             //array to store the components
             $permissionData = [];
         
@@ -53,15 +53,22 @@ class PermissionController extends Controller
                 $response = [
                     'id' => $permission->id,
                     'attributes' => [
-                        // 'component' => [],
-                        ],
+                        'component' => [
+                            'id' => $component->id,
+                            'attributes' => [
+                                'name' => $component->name,
+                                'created_at' => $component->created_at,
+                                'updated_at' => $component->updated_at,
+                            ],
                         'is_created' => $permission->is_created,
                         'is_updated' => $permission->is_updated,
                         'is_deleted' => $permission->is_deleted,
                         'created_at' => $permission->created_at,
                         'updated_at' => $permission->updated_at,
-                    ];
-                
+                        ],
+                    ],
+
+                ];
                
             // Return the response with all components data
             return response()->json(['data' => $response]);

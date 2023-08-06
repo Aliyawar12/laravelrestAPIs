@@ -14,10 +14,10 @@ class DepartmentController extends Controller
               if (Auth::guard('api')->check()) {
                 $departments= Departments::all();
             
-                //array to store the components
+                //array 
                 $departData = [];
             
-                // Loop through each component 
+                // Loop 
                 foreach ($departments as $department) {
                     $departData[] = [
                         'id' => $department->id,

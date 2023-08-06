@@ -9,7 +9,8 @@ use App\Models\Component;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SubdepartmentController;
-
+use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\RoomController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,5 +50,13 @@ Route::middleware('api')->get('/department/{id}', [DepartmentController::class, 
 
 
 //Subdepartments Route
-Route::middleware('api')->get('/Subdepartment', [SubdepartmentController::class, 'index']);
-Route::middleware('api')->get('/Subdepartment/{id}', [SubdepartmentController::class, 'specific']);
+Route::middleware('api')->get('/subdepartment', [SubdepartmentController::class, 'index']);
+Route::middleware('api')->get('/subdepartment/{id}', [SubdepartmentController::class, 'specific']);
+
+//Office Route
+Route::middleware('api')->get('/office', [OfficeController::class, 'index']);
+Route::middleware('api')->get('/office/{id}', [OfficeController::class, 'specific']);
+
+//Room Route
+Route::middleware('api')->get('/room', [RoomController::class, 'index']);
+Route::middleware('api')->get('/room/{id}', [RoomController::class, 'index']);
