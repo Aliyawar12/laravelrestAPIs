@@ -17,10 +17,10 @@ class RolesController extends Controller
     if (Auth::guard('api')->check()) {
             $Roles= Role::all();
         
-            //array to store the components
+            //array 
             $roleData = [];
         
-            // Loop through each component 
+            // Loop 
             foreach ($Roles as $Role) {
                 $roleData[] = [
                     'id' => $Role->id,
@@ -33,7 +33,7 @@ class RolesController extends Controller
                 ];
             }
         
-            // Return the response with all components data
+            // Return the response with all 
             return response()->json(['data' => $roleData]);
         }else{
         return response()->json(['message' => 'Unauthorized'], 401);
@@ -64,7 +64,7 @@ class RolesController extends Controller
                     ],
                 
                 ];
-            // Return the response with all components data
+            // Return the response 
             return response()->json(['data' => $response]);
         }else{
         return response()->json(['message' => 'Unauthorized'], 401);

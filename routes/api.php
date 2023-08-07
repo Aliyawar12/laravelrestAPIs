@@ -11,6 +11,10 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SubdepartmentController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BatchController;
+use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\SubjectController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -59,4 +63,16 @@ Route::middleware('api')->get('/office/{id}', [OfficeController::class, 'specifi
 
 //Room Route
 Route::middleware('api')->get('/room', [RoomController::class, 'index']);
-Route::middleware('api')->get('/room/{id}', [RoomController::class, 'index']);
+Route::middleware('api')->get('/room/{id}', [RoomController::class, 'specific']);
+
+//Batch Route
+Route::middleware('api')->get('/batch', [BatchController::class, 'index']);
+Route::middleware('api')->get('/batch/{id}', [BatchController::class, 'specific']);
+
+
+//Semester Route
+Route::middleware('api')->get('/semester', [SemesterController::class, 'index']);
+Route::middleware('api')->get('/semester/{id}', [SemesterController::class, 'specific']);
+
+//Subject Route
+Route::middleware('api')->get('/subject', [SubjectController::class, 'index']);

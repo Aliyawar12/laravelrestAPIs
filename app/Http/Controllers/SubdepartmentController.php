@@ -48,15 +48,23 @@ class SubdepartmentController extends Controller
                    $response = [
                        'id' => $subdepartment->id,
                        'attributes' => [
-                           'name' => $subdepartment->name,
-                           'head_id' => $subdepartment->head_id,
-                           'department_id' => $subdepartment->department_id,
-                           'created_at' => $subdepartment->created_at,
-                           'updated_at' => $subdepartment->updated_at,
-                           ],
-                       ];
-                   
-                  
+                            'departments' => [
+                                'id' => $department->id,
+                                'attributes' => [
+                                    'name' => $department->name,
+                                    'head_id' => $department->head_id,
+                                    'created_at' => $department->created_at,
+                                    'updated_at' => $department->updated_at,
+                                 ],
+                            ],
+                                    'name' => $subdepartment->name,
+                                    'head_id' => $subdepartment->head_id,
+                                    'department_id' => $subdepartment->department_id,
+                                    'created_at' => $subdepartment->created_at,
+                                    'updated_at' => $subdepartment->updated_at,
+                        ],
+                    
+                ];
                // Return the response with all components data
                return response()->json(['data' => $response]);
            }else{
