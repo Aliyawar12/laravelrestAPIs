@@ -21,6 +21,9 @@ class SemesterController extends Controller
                             'attributes' => [
                                 'title' => $Semester->title,
                                 'semester_no' => $Semester->semester_no,
+                                'created_at' =>$Semester->created_at,
+                                'updated_at' =>$Semester->updated_at,
+                                
                             ],
 
                     ];
@@ -40,6 +43,8 @@ class SemesterController extends Controller
                         'attributes' => [
                             'title' => $semesters->title,
                             'semester_no' => $semesters->semester_no,
+                            'created_at' =>$Semester->created_at,
+                            'updated_at' =>$Semester->updated_at,
                         ],
 
                 ];
