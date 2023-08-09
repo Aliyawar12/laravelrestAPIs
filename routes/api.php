@@ -17,6 +17,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DaysController;
 use App\Http\Controllers\TimeController;
+use App\Http\Controllers\LectureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,7 @@ Route::middleware('api')->get('/day/{id}' , [DaysController::Class, 'specific'])
 //Time Route
 Route::middleware('api')->get('/time' , [TimeController::Class, 'index']);
 Route::middleware('api')->get('/time/{id}' , [TimeController::Class, 'specific']);
+
+//Lecture Route
+Route::middleware('api')->get('/lecture' , [LectureController::Class, 'index']);
+Route::middleware('api')->get('/lecture/{id}' , [LectureController::Class, 'specific']);

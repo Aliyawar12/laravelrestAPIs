@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('day_id')->references('id')->on('days');
-            $table->foreign('timing_id')->references('id')->on('timings');
+            $table->foreign('timing_id')->references('id')->on('times');
         });
     }
 
