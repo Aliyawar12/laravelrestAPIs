@@ -18,6 +18,8 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DaysController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\LectureController;
+use App\Http\Controllers\FreedomController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +96,7 @@ Route::middleware('api')->get('/time/{id}' , [TimeController::Class, 'specific']
 //Lecture Route
 Route::middleware('api')->get('/lecture' , [LectureController::Class, 'index']);
 Route::middleware('api')->get('/lecture/{id}' , [LectureController::Class, 'specific']);
+
+//Freedom Route
+Route::middleware('api')->get('/freedom' , [FreedomController::Class, 'index']);
+Route::middleware('api')->get('/freedom/{id}' , [FreedomController::Class, 'specific']);

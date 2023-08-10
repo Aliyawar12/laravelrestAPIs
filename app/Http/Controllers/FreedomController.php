@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Freedom;
 use App\Models\Lecture;
 use App\Models\User;
 use App\Models\Room;
@@ -13,43 +14,45 @@ use App\Models\Time;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class LectureController extends Controller
+class FreedomController extends Controller
 {
+
     public function index(Request $request){
         if (Auth::guard('api')->check()){
-            $Lectures = Lecture::all();
+            $Freedoms = Freedom::all();
 
-            $LectureData = [];
+            $FreedomData = [];
 
-            foreach ($Lectures as $Lecture){
-                $LectureData[]= [
-                    'id'=>$Lecture->id,
+            foreach ($Freedoms as $Freedom){
+                $FreedomData[]= [
+                    'id'=>$Freedom->id,
                     'attribute'=> [
-                        'user_id'=>$Lecture->user_id,
-                        'room_id'=>$Lecture->room_id,
-                        'class_id'=>$Lecture->class_id,
-                        'subject_id'=>$Lecture->subject_id,
-                        'day_id'=>$Lecture->day_id,
-                        'timing_id'=>$Lecture->timing_id,
-                        'is_cancelled'=>$Lecture->is_cancelled,
-                        'on_scheduled'=>$Lecture->on_scheduled,
-                        'created_at'=>$Lecture->created_at,
-                        'updated_at'=>$Lecture->updated_at,
+                        'lecture_id'=>$Freedom->lecture_id,
+                        'status'=>$Freedom->status,
+                        'user_id'=>$Freedom->user_id,
+                        'room_id'=>$Freedom->room_id,
+                        'class_id'=>$Freedom->class_id,
+                        'subject_id'=>$Freedom->subject_id,
+                        'day_id'=>$Freedom->day_id,
+                        'timing_id'=>$Freedom->timing_id,
+                        'created_at'=>$Freedom->created_at,
+                        'updated_at'=>$Freedom->updated_at,
                     ],
                 ];
             }
-            return response()->json(['data'=>$LectureData]);
+            return response()->json(['data'=>$FreedomData]);
         }else{
             return response()->json(['message'=>'Unauthorized']);
             }
             }
 
-    public function specific($id)
+            public function specific($id)
             {
                     // Verify the token
             if (Auth::guard('api')->check()) {
-                    $Lecture =Lecture::find($id);
+                    $Freedom =Freedom::find($id);
 
+                    $Lecture =Lecture::find($Freedom->lecture_id);
                     $user = User::find($Lecture->user_id);
                     $Room = Room::find($Lecture->room_id);
                     $class = Classes::find($Lecture->class_id);
@@ -59,8 +62,23 @@ class LectureController extends Controller
 
 
                     $response = [
-                        'id' => $Lecture->id,
+                        'id' => $Freedom->id,
                         'attributes' => [
+                            'lectures'=> [
+                                'id'=>$Lecture->id,
+                                'attributes' =>[
+                                'user_id'=>$Lecture->user_id,
+                                'room_id'=>$Lecture->room_id,
+                                'class_id'=>$Lecture->class_id,
+                                'subject_id'=>$Lecture->subject_id,
+                                'day_id'=>$Lecture->day_id,
+                                'timing_id'=>$Lecture->timing_id,
+                                'is_cancelled'=>$Lecture->is_cancelled,
+                                'on_scheduled'=>$Lecture->on_scheduled,
+                                'created_at'=>$Lecture->created_at,
+                                'updated_at'=>$Lecture->updated_at,
+                                ],
+                            ],
                             'user' => [
                                 'id' => $user->id,
                                 'attributes' => [
@@ -118,16 +136,16 @@ class LectureController extends Controller
                                 'updated_at' =>$timing->updated_at,
                         ],
                       ],
-                        'user_id'=>$Lecture->user_id,
-                        'room_id'=>$Lecture->room_id,
-                        'class_id'=>$Lecture->class_id,
-                        'subject_id'=>$Lecture->subject_id,
-                        'day_id'=>$Lecture->day_id,
-                        'timing_id'=>$Lecture->timing_id,
-                        'is_cancelled'=>$Lecture->is_cancelled,
-                        'on_scheduled'=>$Lecture->on_scheduled,
-                        'created_at'=>$Lecture->created_at,
-                        'updated_at'=>$Lecture->updated_at,
+                       'lecture_id'=>$Freedom->lecture_id,
+                       'status'=>$Freedom->status,
+                       'user_id'=>$Freedom->user_id,
+                       'room_id'=>$Freedom->room_id,
+                       'class_id'=>$Freedom->class_id,
+                       'subject_id'=>$Freedom->subject_id,
+                       'day_id'=>$Freedom->day_id,
+                       'timing_id'=>$Freedom->timing_id,
+                       'created_at'=>$Freedom->created_at,
+                       'updated_at'=>$Freedom->updated_at,
                           ],
                         ],
                     ],
@@ -139,5 +157,4 @@ class LectureController extends Controller
     }
 }
 }
-
 

@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lectures', function (Blueprint $table) {
+        Schema::create('freedom', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');   
-            $table->unsignedBigInteger('room_id');   
-            $table->unsignedBigInteger('class_id');   
-            $table->unsignedBigInteger('subject_id'); 
-            $table->unsignedBigInteger('day_id');     
-            $table->unsignedBigInteger('timing_id');  
+            $table->string('status');
+            $table->unsignedBigInteger('lecture_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('day_id');
+            $table->unsignedBigInteger('timing_id');
             $table->timestamps();
 
-            
+            $table->foreign('lecture_id')->references('id')->on('lectures');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->foreign('class_id')->references('id')->on('classes');
@@ -36,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lectures');
+        Schema::dropIfExists('freedom');
     }
 };
