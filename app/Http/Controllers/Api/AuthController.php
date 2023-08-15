@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function geToken(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
-       
+
        // $user = $request->only(['id', 'name', 'email', 'password']);
         // Se o guard do config que encontra-se no config/auth, permanecer we, podes pôr apartir daqui api. como podes faze-lo apartir do guard, onde esta web e substituir pelo api  'defaults' => ['guard' => 'api','passwords' => 'users',]
         // if ($token = !auth('api')->attempt($credentials)) {
@@ -45,9 +45,9 @@ class AuthController extends Controller
 
     /**
      * Comando Factory: php artisan tinker | User::factory()->create() - executar na linha de comando
-     * 
+     *
      * Quando quiser fazer listagem, vai no Headers e configura o Accept - Application/json e na lina por baixo: Authorization - Bearer segue o token perto do Bearer.
-     * 
+     *
      */
 
 
@@ -58,13 +58,13 @@ class AuthController extends Controller
              'email' => 'required|string|email|max:255|unique:users',
              'password' => 'required|string|min:6',
          ]);
- 
+
          $user = User::create([
              'name' => $request->name,
              'email' => $request->email,
              'password' => Hash::make($request->password),
          ]);
- 
+
          return response()->json([
              'message' => 'User created successfully',
              'user' => $user
@@ -78,8 +78,8 @@ class AuthController extends Controller
              'message' => 'Successfully logged out',
          ]);
      }
-     
 
-     
+
+
 }
 
