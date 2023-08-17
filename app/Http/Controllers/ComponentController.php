@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 
 class ComponentController extends Controller
@@ -16,11 +16,11 @@ class ComponentController extends Controller
           // Verify the token
     if (Auth::guard('api')->check()) {
             $components = Component::all();
-        
+
             //array to store the components
             $componentData = [];
-        
-            // Loop through each component 
+
+            // Loop through each component
             foreach ($components as $component) {
                 $componentData[] = [
                     'id' => $component->id,
@@ -31,19 +31,20 @@ class ComponentController extends Controller
                     ],
                 ];
             }
-        
+
             // Return the response with all components data
             return response()->json(['data' => $componentData]);
         }else{
         return response()->json(['message' => 'Unauthorized'], 401);
     }
     }
-     
+
     public function getComponentById($id){
-
-          $result = $this->specific($id);
-
-          return $result;
+        $component = Component::find($id);
+   return [
+        'id' => $component->id,
+        'name' => $component->name,
+   ];
     }
     public function specific($id)
     {
@@ -51,8 +52,7 @@ class ComponentController extends Controller
 
         if ($component) {
             return response()->json([
-                'id' => $component->id,
-                'name' => $component->name,
+                $this->getComponentById($id)
             ]);
         } else {
             return response()->json(['message' => 'Component not found.'], 404);

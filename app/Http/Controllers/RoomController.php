@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 use App\Models\Room;
 use App\Models\Office;
 
@@ -41,7 +41,7 @@ class RoomController extends Controller
             // Verify the token
         if (Auth::guard('api')->check()) {
                 $Rooms = Room::find($id);
-    
+
                 $office = Office::find( $Rooms->office_id);
                     $response = [
                         'id' =>  $Rooms->id,
@@ -60,7 +60,7 @@ class RoomController extends Controller
                             'created_at' =>  $Rooms->created_at,
                             'updated_at' =>  $Rooms->updated_at,
                         ],
-                    
+
                     ];
                 // Return the response with all components data
                 return response()->json(['data' => $response]);

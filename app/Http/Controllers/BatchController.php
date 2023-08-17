@@ -6,26 +6,26 @@ use Illuminate\Http\Request;
 use App\Models\Batch;
 use App\Models\Subdepartment;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 class BatchController extends Controller
 {
     public function index(Request $request){
-        
+
         {
             // Verify the token
       if (Auth::guard('api')->check()) {
               $Batches= Batch::all();
-          
-              //array 
+
+              //array
               $batchData = [];
-          
-              // Loop  
+
+              // Loop
               foreach ($Batches as $Batch) {
                   $batchData[] = [
                       'id' => $Batch->id,
                       'attributes' => [
-                          'session' => $Batch->session, 
+                          'session' => $Batch->session,
                           'start_date' => $Batch->start_date,
                           'end_date' => $Batch->end_date,
                           'subdepartment_id' => $Batch->subdepartment_id,
@@ -35,8 +35,8 @@ class BatchController extends Controller
                       ],
                   ];
               }
-          
-              // Return the response 
+
+              // Return the response
               return response()->json(['data' => $batchData]);
           }else{
           return response()->json(['message' => 'Unauthorized'], 401);
@@ -45,6 +45,18 @@ class BatchController extends Controller
 
     }
 
+    public function getComponentById($id){
+        $Batches =Batch::find($id);
+   return [
+    'session' => $Batches->session,
+    'start_date' => $Batches->start_date,
+    'end_date' => $Batches->end_date,
+    'subdepartment_id' => $Batches->subdepartment_id,
+    'shift' => $Batches->shift,
+    'created_at' => $Batches->updated_at,
+    'updated_at' => $Batches->updated_at,
+   ];
+    }
     public function specific($id)
     {
         // Verify the token
@@ -65,7 +77,7 @@ class BatchController extends Controller
                                      'updated_at' => $subdepartment->updated_at,
                                 ],
                             ],
-                            'session' => $Batches->session, 
+                            'session' => $Batches->session,
                             'start_date' => $Batches->start_date,
                             'end_date' => $Batches->end_date,
                             'subdepartment_id' => $Batches->subdepartment_id,
@@ -73,7 +85,7 @@ class BatchController extends Controller
                             'created_at' => $Batches->updated_at,
                             'updated_at' => $Batches->updated_at,
                      ],
-                 
+
              ];
             // Return the response with all components data
             return response()->json(['data' => $response]);

@@ -68,6 +68,7 @@ Route::middleware('api')->get('/office/{id}', [OfficeController::class, 'specifi
 //Room Route
 Route::middleware('api')->get('/room', [RoomController::class, 'index']);
 Route::middleware('api')->get('/room/{id}', [RoomController::class, 'specific']);
+Route::middleware('api')->get('/roomid/{id}', [RoomController::class, 'getComponentById']);
 
 //Batch Route
 Route::middleware('api')->get('/batch', [BatchController::class, 'index']);
@@ -96,6 +97,7 @@ Route::middleware('api')->get('/time/{id}' , [TimeController::Class, 'specific']
 //Lecture Route
 Route::middleware('api')->get('/lecture' , [LectureController::Class, 'index']);
 Route::middleware('api')->get('/lecture/{id}' , [LectureController::Class, 'specific']);
+Route::middleware('api')->get('/lectures/{UserID}' , [LectureController::Class, 'User']);
 
 //Freedom Route
 Route::middleware('api')->get('/freedom' , [FreedomController::Class, 'index']);

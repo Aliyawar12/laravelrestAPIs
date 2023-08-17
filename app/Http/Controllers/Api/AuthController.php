@@ -43,21 +43,20 @@ class AuthController extends Controller
         ];   return response()->json($response);
     }
 
-    /**
-     * Comando Factory: php artisan tinker | User::factory()->create() - executar na linha de comando
-     *
-     * Quando quiser fazer listagem, vai no Headers e configura o Accept - Application/json e na lina por baixo: Authorization - Bearer segue o token perto do Bearer.
-     *
-     */
-
 
      public function register(Request $request)
      {
          $request->validate([
              'name' => 'required|string|max:255',
-             'email' => 'required|string|email|max:255|unique:users',
+             'email' => 'required|string|email|max:255|unique:users', // The "unique:users" validation rule ensures email uniqueness
              'password' => 'required|string|min:6',
          ]);
+
+         // Check if the email is already registered
+         $existingUser = User::where('email', $request->email)->first();
+         if ($existingUser) {
+             return response()->json(['message' => 'Email already registered'], 422); // Return a 422 Unprocessable Entity status
+         }
 
          $user = User::create([
              'name' => $request->name,
@@ -70,6 +69,7 @@ class AuthController extends Controller
              'user' => $user
          ]);
      }
+
 
      public function logout()
      {
