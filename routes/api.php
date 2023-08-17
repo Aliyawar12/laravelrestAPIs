@@ -97,7 +97,8 @@ Route::middleware('api')->get('/time/{id}' , [TimeController::Class, 'specific']
 //Lecture Route
 Route::middleware('api')->get('/lecture' , [LectureController::Class, 'index']);
 Route::middleware('api')->get('/lecture/{id}' , [LectureController::Class, 'specific']);
-Route::middleware('api')->get('/lectures/{UserID}' , [LectureController::Class, 'User']);
+Route::middleware('api')->get('/lectureU/{UserID}' , [LectureController::Class, 'User']);
+Route::middleware('api')->get('/lectureR/{RoomID}' , [LectureController::Class, 'Room']);
 
 //Freedom Route
 Route::middleware('api')->get('/freedom' , [FreedomController::Class, 'index']);
