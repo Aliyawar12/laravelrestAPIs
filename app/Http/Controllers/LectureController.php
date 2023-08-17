@@ -138,6 +138,7 @@ class LectureController extends Controller
         return response()->json(['message' => 'Unauthorized'], 401);
     }
 }
+
 };
 
 
