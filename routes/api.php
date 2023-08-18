@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PermissionController;
 use App\Models\Component;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SubdepartmentController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\DaysController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\FreedomController;
+
 
 
 /*
@@ -48,6 +50,11 @@ Route::middleware('api')->get('/componentsid/{id}', [ComponentController::class,
 //Permission Routes
 Route::middleware('api')->get('/permission', [PermissionController::class, 'index']);
 Route::middleware('api')->get('/permission/{id}', [PermissionController::class, 'specific']);
+
+//User route
+Route::middleware('api')->get('/user' , [UserController::Class, 'index']);
+Route::middleware('api')->get('/user/{id}' , [UserController::Class, 'specific']);
+
 
 //Role Route
 Route::middleware('api')->get('/role', [RolesController::class, 'index']);
@@ -97,8 +104,8 @@ Route::middleware('api')->get('/time/{id}' , [TimeController::Class, 'specific']
 //Lecture Route
 Route::middleware('api')->get('/lecture' , [LectureController::Class, 'index']);
 Route::middleware('api')->get('/lecture/{id}' , [LectureController::Class, 'specific']);
-Route::middleware('api')->get('/lectureU/{UserID}' , [LectureController::Class, 'specificuser']);
-Route::middleware('api')->get('/lectureR/{RoomID}' , [LectureController::Class, 'Room']);
+Route::middleware('api')->get('/lectureU/{UserID}' , [LectureController::Class, 'userLectures']);
+Route::middleware('api')->get('/lectureR/{RoomID}' , [LectureController::Class, 'roomLectures']);
 
 //Freedom Route
 Route::middleware('api')->get('/freedom' , [FreedomController::Class, 'index']);
