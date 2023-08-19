@@ -37,6 +37,8 @@ use App\Http\Controllers\FreedomController;
 Route::middleware('api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 //Auth Routes
 Route::post('/login', [AuthController::class, 'geToken']);
 Route::post('/register', [AuthController::class, 'register']);
