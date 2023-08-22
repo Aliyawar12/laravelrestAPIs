@@ -112,3 +112,5 @@ Route::middleware('api')->get('/lectureR/{RoomID}' , [LectureController::Class, 
 //Freedom Route
 Route::middleware('api')->get('/freedom' , [FreedomController::Class, 'index']);
 Route::middleware('api')->get('/freedom/{id}' , [FreedomController::Class, 'specific']);
+
+//Mail Test

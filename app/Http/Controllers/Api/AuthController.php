@@ -11,13 +11,12 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    //use TwoFactorAuthenticationController;
+
     public function geToken(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
 
-       // $user = $request->only(['id', 'name', 'email', 'password']);
-        // Se o guard do config que encontra-se no config/auth, permanecer we, podes pôr apartir daqui api. como podes faze-lo apartir do guard, onde esta web e substituir pelo api  'defaults' => ['guard' => 'api','passwords' => 'users',]
-        // if ($token = !auth('api')->attempt($credentials)) {
         if (!$token = auth('api')->attempt($credentials)) {
             abort(401, 'Nao Autorizado');
         }
