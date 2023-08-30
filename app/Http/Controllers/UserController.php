@@ -27,6 +27,7 @@ class UserController extends Controller
                     'attributes' => [
                         'name' => $user->name,
                         'email' => $user->email,
+                        'role_id' => $user->role_id,
                         'created_at' => $user->created_at,
                         'updated_at' => $user->updated_at,
                     ],
@@ -50,6 +51,7 @@ class UserController extends Controller
                     'attributes' => [
                         'name'=> $user->name,
                         'email' => $user->email,
+                        'role_id' => $user->role_id,
                         'created_at' => $user->created_at,
                         'updated_at' => $user->updated_at,
                         ],

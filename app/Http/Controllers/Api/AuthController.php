@@ -34,12 +34,13 @@ class AuthController extends Controller
                     'updated_at' => $user->updated_at,
                 ],
           //  },
-                'jwt' => [
+            'jwt' => [
                 'token' => $token,
                 'token_type' => 'bearer'
                 ]
-            ]
-        ];   return response()->json($response);
+                ]
+            ];
+          return response()->json($response);
     }
 
 
