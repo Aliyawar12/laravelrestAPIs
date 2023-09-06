@@ -26,7 +26,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'name',
         'email',
         'password',
-        'role_id',
+        'roles_id',
     ];
 
     /**
@@ -38,6 +38,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'password',
         'remember_token',
     ];
+
 
     /**
      * The attributes that should be cast.

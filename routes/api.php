@@ -56,6 +56,7 @@ Route::middleware('api')->get('/permission/{id}', [PermissionController::class, 
 //User route
 Route::middleware('api')->get('/user' , [UserController::Class, 'index']);
 Route::middleware('api')->get('/user/{id}' , [UserController::Class, 'specific']);
+Route::middleware('api')->put('/update/{id}' , [UserController::Class, 'update']);
 
 
 //Role Route
