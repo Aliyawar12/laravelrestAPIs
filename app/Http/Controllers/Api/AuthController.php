@@ -48,14 +48,13 @@ class AuthController extends Controller
      {
          $request->validate([
              'name' => 'required|string|max:255',
-             'email' => 'required|string|email|max:255|unique:users', // The "unique:users" validation rule ensures email uniqueness
+             'email' => 'required|string|email|max:255|unique:users',
              'password' => 'required|string|min:6',
          ]);
 
-         // Check if the email is already registered
          $existingUser = User::where('email', $request->email)->first();
          if ($existingUser) {
-             return response()->json(['message' => 'Email already registered'], 422); // Return a 422 Unprocessable Entity status
+             return response()->json(['message' => 'Email already registered'], 422);
          }
 
          $user = User::create([
